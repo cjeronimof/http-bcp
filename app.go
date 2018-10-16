@@ -26,7 +26,7 @@ func (a *App) Export(w http.ResponseWriter, r *http.Request) {
 	db := vars["db"]
 	schema := vars["schema"]
 	table := vars["table"]
-	result, err := Export(db, table)
+	result, err := Export(db, schema, table)
 	if err != nil {
 		go DoCallbackRequest(callBackExportUrl, result)
 		w.WriteHeader(http.StatusOK)
@@ -40,7 +40,7 @@ func (a *App) Import(w http.ResponseWriter, r *http.Request) {
 	db := vars["db"]
 	schema := vars["schema"]
 	table := vars["table"]
-	result, err := Import(db, table)
+	result, err := Import(db, schema, table)
 	if err != nil {
 		go DoCallbackRequest(callBackImportUrl, result)
 		w.WriteHeader(http.StatusOK)
